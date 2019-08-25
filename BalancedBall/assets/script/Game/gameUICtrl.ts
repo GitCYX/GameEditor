@@ -40,13 +40,18 @@ export default class gameUICtrl extends cc.Component {
     @property(cc.Label)
     countTime:cc.Label = null;
 
+    @property([cc.Node])
+    stars:cc.Node[] = [];
+
     @property(cc.Camera)
     mainCamera: cc.Camera = null;
     // LIFE-CYCLE CALLBACKS:
     isGameOver:boolean = false;
     def_BallPos:cc.Vec2 = cc.v2(0,-300);
     _timeNow:number = 0;
-
+    oneStarTime:number = 0;
+    twoStarTime:number = 0;
+    threeStarTime:number = 0;
     onLoad () 
     {
         let manager = cc.director.getPhysicsManager();
@@ -72,7 +77,10 @@ export default class gameUICtrl extends cc.Component {
     initGame(editData)
     {
         //editData.gameName
-        this._timeNow = parseInt(editData.gameTime);
+        this._timeNow = parseInt(editData.oneStarTime);
+        this.oneStarTime = parseInt(editData.oneStarTime);
+        this.twoStarTime = parseInt(editData.twoStarTime);
+        this.threeStarTime = parseInt(editData.threeStarTime);
         this.updateTime();
         this.elevatorCtrl.setElevatorProperty(parseInt(editData.platformDeltaMove),parseInt(editData.platformMostMove));
 
@@ -133,7 +141,6 @@ export default class gameUICtrl extends cc.Component {
             let str = LanguageMgr.instance.getLabel('loseGame');
             this.gameResult.string = str;
         }
-       
     }
 
     onKeyDown(event)
@@ -213,6 +220,7 @@ export default class gameUICtrl extends cc.Component {
             this.unscheduleAllCallbacks();
             return;
         }
+        this.dealStar();
         if(this._timeNow <= 0)
         {
             this.unscheduleAllCallbacks();
@@ -221,6 +229,23 @@ export default class gameUICtrl extends cc.Component {
         }
         this._timeNow -= 1;  
         this.changeTimeFormat();
+    }
+
+    dealStar()
+    {
+        let passTime = this.oneStarTime - this._timeNow;
+        if (passTime >= this.oneStarTime)
+        {
+            this.stars[2].opacity = 155;
+        }
+        else if (passTime >= this.twoStarTime)
+        {
+            this.stars[1].opacity = 155;
+        }
+        else if (passTime >= this.threeStarTime)
+        {
+            this.stars[0].opacity = 155;
+        }
     }
 
     changeTimeFormat()

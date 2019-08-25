@@ -12,7 +12,13 @@ export default class dataInputCtrl extends cc.Component {
     gameName:string = 'Default';
 
     @property()
-    gameTime:number = 5000;
+    threeStarTime:number = 60;
+
+    @property()
+    twoStarTime:number = 120;
+
+    @property()
+    oneStarTime:number = 300;
 
     @property()
     deltaMove:number = 10;
@@ -95,7 +101,9 @@ export default class dataInputCtrl extends cc.Component {
         let preSerizalData:any  = {};
         preSerizalData.gameIndex = this.gameIndex;
         preSerizalData.blockName = this.gameName;
-        preSerizalData.gameTime = this.gameTime;
+        preSerizalData.threeStarTime = this.threeStarTime;
+        preSerizalData.twoStarTime = this.twoStarTime;
+        preSerizalData.oneStarTime = this.oneStarTime;
         preSerizalData.platformDeltaMove = this.deltaMove;
         preSerizalData.platformMostMove = this.mostDeltaMove;
         preSerizalData.ballsInfo = ballsInfo;
@@ -106,7 +114,9 @@ export default class dataInputCtrl extends cc.Component {
 
     getEditorData()
     {
-        return {name:this.gameName,gameTime:this.gameTime,platformDeltaMove:this.deltaMove,platformMostMove:this.mostDeltaMove}
+        return {name:this.gameName, threeStarTime:this.threeStarTime, 
+            twoStarTime:this.twoStarTime, oneStarTime:this.oneStarTime,
+            platformDeltaMove:this.deltaMove, platformMostMove:this.mostDeltaMove}
     }
 
     testSerialize()
