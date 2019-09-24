@@ -41,17 +41,11 @@
   ],
   "design-resolution-height": 1920,
   "design-resolution-width": 1080,
-  "excluded-modules": [],
-  "facebook": {
-    "appID": "",
-    "audience": {
-      "enable": false
-    },
-    "enable": false,
-    "live": {
-      "enable": false
-    }
-  },
+  "excluded-modules": [
+    "Geom Utils",
+    "3D",
+    "3D Primitive"
+  ],
   "fit-height": true,
   "fit-width": true,
   "group-list": [
@@ -62,14 +56,24 @@
     "BallCenter",
     "limitedSenser"
   ],
-  "last-module-event-record-time": 0,
   "simulator-orientation": false,
   "simulator-resolution": {
     "height": 640,
     "width": 960
   },
-  "start-scene": "eec67354-3e5c-4f83-83c0-64cbcb52f4d4",
   "use-customize-simulator": false,
   "use-project-simulator-setting": false,
-  "assets-sort-type": "name"
+  "start-scene": "current",
+  "last-module-event-record-time": 0,
+  "assets-sort-type": "name",
+  "facebook": {
+    "enable": false,
+    "appID": "",
+    "live": {
+      "enable": false
+    },
+    "audience": {
+      "enable": false
+    }
+  }
 }
